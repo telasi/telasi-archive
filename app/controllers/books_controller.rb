@@ -31,7 +31,6 @@ class BooksController < ApplicationController
     @book = Book.new
     @book.page_count = 0
     @title = 'ახალი წიგნი'
-    @include_calendar = true
     
     if params[:copy_id]
       copy = Book.find(params[:copy_id])
@@ -58,7 +57,6 @@ class BooksController < ApplicationController
   def edit
     @book = Book.find(params[:id])
     @title = @book.name
-    @include_calendar = true
   end
 
   # POST /books
@@ -66,10 +64,11 @@ class BooksController < ApplicationController
   def create
     @parent = Place.find(session[:parent_id])
     @title = 'ახალი წიგნი'
-    @include_calendar = true
 
     @book = Book.new(params[:book])
     @book.place = @parent
+    @book.book_year = @book.start_date ? @book.start_date.year : Time.now.year
+    @book.enter_year = Time.now.year
 
     respond_to do |format|
       if @book.save
@@ -87,10 +86,11 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     @title = @book.name
-    @include_calendar = true
 
     respond_to do |format|
       if @book.update_attributes(params[:book])
+        @book.book_year = @book.start_date ? @book.start_date.year : Time.now.year
+        @book.save
         format.html { redirect_to(@book, :notice => 'წიგნი განახლებულია.') }
         format.xml  { head :ok }
       else

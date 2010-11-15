@@ -18,6 +18,9 @@ Archive::Application.routes.draw do
   match '/reports', :controller => :reports, :action => :index
   match '/newtaskbody/:id', :controller => :tasks, :action => :new_body
 
+  match '/rep_by_direqcia', :controller => :reports, :action => :by_direqcia
+  match '/rep_by_direqcia_and_year', :controller => :reports, :action => :by_direqcia_and_year
+
   # root path
   root :to => 'site#index', :as => :home
 end

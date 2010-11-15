@@ -1,5 +1,10 @@
 <h1>წიგნების რაოდენობა დირექციების მიხედვით</h1>
 
+<p>
+აქ მოყვანილია წიგნების რაოდენობები დირექციების მიხედვით.
+კონკრეტული ციდრის გასაშიფრად, გთხოვთ დაწკაპდეთ მასზე მაუსით.
+</p>
+
 <table class="report">
 <tr>
 <th>კოდი</th>
@@ -10,7 +15,7 @@
 <tr>
 <td><%= row[0].code %></td>
 <td><%= link_to row[0].name, row[0] %></td>
-<td class="numeric"><%= number_with_delimiter row[1] %></td>
+<td class="numeric"><%= link_to number_with_delimiter(row[1]), rep_by_direqcia_url(:s => 'true', :direqcia_id => row[0].id) %></td>
 </tr>
 <% end -%>
 <tr>

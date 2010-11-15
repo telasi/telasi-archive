@@ -22,12 +22,12 @@ class ReportsController < ApplicationController
   def by_direqcia_and_year
     @title = 'წიგნების რაოდენობა დირექციების და წლების მიხედვით'
     @raw_data = Book.find_by_sql("SELECT
-      YEAR(b.start_date) as year, count(*) AS count, n.direqcia_id AS direqcia_id
+      b.book_year as year, count(*) AS count, n.direqcia_id AS direqcia_id
       FROM books b
       INNER JOIN nomenclatures n ON n.id = b.nomenclature_id
       INNER JOIN direqcias d ON d.id = n.direqcia_id
-      GROUP BY YEAR(b.start_date), n.direqcia_id
-      ORDER BY YEAR(b.start_date), d.code, n.code")
+      GROUP BY b.book_year, n.direqcia_id
+      ORDER BY b.book_year, d.code, n.code")
     @total_count = 0
     @data = []
     prev_year = nil
@@ -50,6 +50,10 @@ class ReportsController < ApplicationController
     unless prev_year.nil?
       @data.push({:year => prev_year, :year_data => year_data, :count => year_count})
     end
+  end
+
+  def search_books
+    
   end
 
 end
