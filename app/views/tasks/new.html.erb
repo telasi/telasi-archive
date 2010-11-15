@@ -1,7 +1,7 @@
 <h1>ახალი დავალება</h1>
 
 <% form_for(@task) do |f| %>
-  <%= f.error_messages %>
+<%= render :partial => 'general/errors', :locals => {:entity => @task} %>
 
   <p>
     <%= f.label :subject, 'დავალების სათაური' %><br />

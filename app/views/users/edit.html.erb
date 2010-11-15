@@ -1,7 +1,7 @@
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
 
 <% form_for(@user) do |f| %>
-  <%= f.error_messages %>
+<%= render :partial => 'general/errors', :locals => {:entity => @user} %>
 
   <p>
     <%= f.label :name, "მომხმარებელი" %><br />

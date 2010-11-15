@@ -1,35 +1,13 @@
 <!-- გზა მიმდინარე ადგილმდებარეობამდე -->
 <div id="location"><%= place_location(@parent) %></div>
 
-<!-- მოქმედებების სია -->
-<div class="action">
-<% if @parent -%>
-<%= link_to 'ახალი თარო', new_place_path(:parent_id => @parent.id), :class => 'folder_add' %> &middot;
-<%= link_to 'ახალი წიგნი', new_book_path(:parent_id => @parent.id), :class => 'book_add' %> &middot;
-<%= link_to 'წიგნების დალაგება', reorder_path(:parent_id => @parent.id), :class => 'order_items' %>
 
-<% else -%>
-<%= link_to 'ახალი თარო', new_place_path, :class => 'folder_add' %>
-<% end %>
-</div>
+<%= render :partial => 'nomenclatures' %>
 
-<!-- ნომენკლატურების სია -->
-<div class="sidebar">
-<p><b>აქტიური ნომენკლატურა:</b> 
-<% if @active_nom -%>
-<%= @active_nom %>
-<%= link_to 'წაშლა', :parent_id => @parent ? @parent.id : nil, :nomenclature_id => ''  %>
-<% else -%> (ცარიელი)
-<% end -%>
-</p>
-<% @nomenclatures.each do |nomenclature| -%>
-<%= nomenclature %> <%= link_to 'გააქტიურება', :parent_id => @parent ? @parent.id : nil, :nomenclature_id => nomenclature.id %><br/>
-<% end -%>
-<p style="background: yellow; padding: 5px; border: 1px solid orange; font-size: 12px;">აქტიური ნომენკლატურა გამოიყენება წიგნის ნომენკლატურის სწრაფად შესაცვლელად.</p>
-</div>
-
-<!-- თაროების სია -->
-<div class=content_withsidebar>
+<!-- places -->
+<div class="content_withsidebar">
+<%= render :partial => 'actions' %>
+<div style="min-height: 300px;">
 <% if @places.empty? and @books.empty? -%>
 <p style="font-style: italic; color: gray;">სია ცარიელია</p>
 <% else -%>
@@ -46,8 +24,9 @@
 </div>
 <% end -%>
 
-<% # წიგნების გამოტანა
-if @books; @books.each do |book| -%>
+<!-- books -->
+<% if @books.any?
+@books.each do |book| -%>
 <div class="list_row">
 <div class="list_action2">
 <%= link_to 'შეცვლა', edit_book_path(book) %>
@@ -66,4 +45,5 @@ if @books; @books.each do |book| -%>
 <% end; end -%>
 <% end -%>
 </div>
-<!-- სიის დასასრული -->
+<%= render :partial => 'actions' %>
+</div>

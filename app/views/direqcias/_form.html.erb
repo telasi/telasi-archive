@@ -1,0 +1,14 @@
+<% form_for(@direqcia) do |f| %>
+<%= render :partial => 'general/errors', :locals => {:entity => @direqcia} %>
+  <p>
+    <%= f.label :code, 'კოდი' %><br />
+    <%= f.text_field :code, :size => 4 %>
+  </p>
+  <p>
+    <%= f.label :name, 'სახელი' %><br />
+    <%= f.text_field :name, :size => 60 %>
+  </p>
+  <p>
+    <%= f.submit 'შენახვა' %>
+  </p>
+<% end %>

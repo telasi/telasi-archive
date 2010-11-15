@@ -1,0 +1,13 @@
+<% form_for(@place) do |f| %>
+<%= render :partial => 'general/errors', :locals => {:entity => @place} %>
+<%= f.hidden_field :parent_id %>
+
+  <p>
+    <%= f.label :name, "სახელი" %><br />
+    <%= f.text_field :name %>
+  </p>
+  
+  <p>
+    <%= f.submit 'შენახვა' %>
+  </p>
+<% end %>

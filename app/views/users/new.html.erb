@@ -1,7 +1,7 @@
 <h1>ახალი მომხმარებელი</h1>
 
 <% form_for(@user) do |f| %>
-  <%= f.error_messages %>
+<%= render :partial => 'general/errors', :locals => {:entity => @user} %>
 
   <p>
     <%= f.label :name, "მომხმარებელი" %><br />

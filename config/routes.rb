@@ -16,6 +16,7 @@ Archive::Application.routes.draw do
   match '/change_nomenclature', :controller => :places, :action => :change_nomenclature
   match '/reorder', :controller => :places, :action => :reorder
   match '/reports', :controller => :reports, :action => :index
+  match '/newtaskbody/:id', :controller => :tasks, :action => :new_body
 
   # root path
   root :to => 'site#index', :as => :home

@@ -1,0 +1,18 @@
+<% form_for(@nomenclature) do |f| -%>
+<%= render :partial => 'general/errors', :locals => {:entity => @nomenclature} %>
+  <p>
+    <%= f.label :direqcia, 'დირექცია' %><br />
+    <%= f.collection_select(:direqcia_id, Direqcia.all(:order => :code), :id, :code) %>
+  </p>
+  <p>
+    <%= f.label :code, 'კოდი' %><br />
+    <%= f.text_field :code, :size => 4 %>
+  </p>
+  <p>
+    <%= f.label :name, 'დასახელება' %><br />
+    <%= f.text_field :name, :size => 60 %>
+  </p>
+  <p>
+    <%= f.submit 'შენახვა' %>
+  </p>
+<% end -%>

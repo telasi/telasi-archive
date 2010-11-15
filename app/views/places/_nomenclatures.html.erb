@@ -1,0 +1,13 @@
+<div class="sidebar">
+<p><b>აქტიური ნომენკლატურა:</b> 
+<% if @active_nom -%>
+<%= @active_nom %>
+<%= link_to 'წაშლა', :parent_id => @parent ? @parent.id : nil, :nomenclature_id => ''  %>
+<% else -%> (ცარიელი)
+<% end -%>
+</p>
+<% @nomenclatures.each do |nomenclature| -%>
+<%= nomenclature %> <%= link_to 'გააქტიურება', :parent_id => @parent ? @parent.id : nil, :nomenclature_id => nomenclature.id %><br/>
+<% end -%>
+<p style="background: yellow; padding: 5px; border: 1px solid orange; font-size: 12px;">აქტიური ნომენკლატურა გამოიყენება წიგნის ნომენკლატურის სწრაფად შესაცვლელად.</p>
+</div>

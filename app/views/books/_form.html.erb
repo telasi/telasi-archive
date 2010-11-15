@@ -1,5 +1,5 @@
 <% form_for(@book) do |f| %>
-  <%= f.error_messages %>
+  <%= render :partial => 'general/errors', :locals => {:entity => @book} %>
 
   <p>
     <%= f.label :name, 'სახელი' %><br />

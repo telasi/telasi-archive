@@ -40,4 +40,9 @@ function save_order() {
 <li book_id="<%= book.id %>" class="item"><b><%= book.order_by %></b>: <%= book.name %></li>
 <% end -%>
 </ul>
+<% else -%>
+<div class="action">
+<%= link_to 'გაუქმება', places_url(:parent_id => @parent.id), :class => 'cancel' %>
+</div>
+<p style="font-style: italic; color: gray;">სია ცარიელია</p>
 <% end -%>
