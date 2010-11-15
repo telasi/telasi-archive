@@ -1,6 +1,6 @@
 <table width="100%" cellspacing="2" cellpadding="1">
 <tr>
-<!-- მარცხენა ნაწილი -->
+<!-- left side -->
 <td width="50%" style="border: 1px solid purple; padding: 5px; background: #EEE; vertical-align: top;">
 <div id="location"><%= place_location_move(@parent1, @parent2, 1) %></div>
 <% @places1.each do |place| -%>
@@ -8,7 +8,7 @@
 <div class="list_action2"><%= move_link place.id, @parent1, @parent2, 1, 'place' %></div>
 <div class="list_item2" style="float: none;">
 <%= image_tag '16x16/folder.png', :style => "vertical-align: middle;" %>
-<%= link_to place.name, :params => places_params(place, @parent2, :parent_id1, :parent_id2) %>
+<%= link_to place.name, move_url(places_params(place, @parent2, :parent_id1, :parent_id2)) %>
 </div>
 </div>
 <% end -%>
@@ -30,7 +30,7 @@
 <div class="list_action2"><%= move_link place.id, @parent1, @parent2, 2, 'place' %></div>
 <div class="list_item2" style="float: none;">
 <%= image_tag '16x16/folder.png', :style => "vertical-align: middle;" %>
-<%= link_to h(place.name), :params => places_params(@parent1, place, :parent_id1, :parent_id2) %>
+<%= link_to h(place.name), move_url(places_params(@parent1, place, :parent_id1, :parent_id2)) %>
 </div>
 </div>
 <% end -%>

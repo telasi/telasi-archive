@@ -66,7 +66,7 @@ class MoveController < ApplicationController
     end
 
     # გადამისამართება
-    redirect_to :action => :index, :params => {:parent_id1 => parent_id1, :parent_id2 => parent_id2}
+    redirect_to move_url(:parent_id1 => parent_id1, :parent_id2 => parent_id2)
   end
 
 private
