@@ -4,13 +4,12 @@
 <!-- მოქმედებების სია -->
 <div class="action">
 <% if @parent -%>
-<%= image_tag '16x16/folder_add.png' %>
-<%= link_to 'ახალი თარო', new_place_path(:parent_id => @parent.id) %> |
-<%= image_tag '16x16/book_add.png' %>
-<%= link_to 'ახალი წიგნი', new_book_path(:parent_id => @parent.id) %>
+<%= link_to 'ახალი თარო', new_place_path(:parent_id => @parent.id), :class => 'folder_add' %> &middot;
+<%= link_to 'ახალი წიგნი', new_book_path(:parent_id => @parent.id), :class => 'book_add' %> &middot;
+<%= link_to 'წიგნების დალაგება', reorder_path(:parent_id => @parent.id), :class => 'order_items' %>
+
 <% else -%>
-<%= image_tag '16x16/folder_add.png' %>
-<%= link_to 'ახალი თარო', new_place_path %>
+<%= link_to 'ახალი თარო', new_place_path, :class => 'folder_add' %>
 <% end %>
 </div>
 

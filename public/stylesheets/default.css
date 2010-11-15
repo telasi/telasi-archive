@@ -240,3 +240,49 @@ table.report td.numeric {
 	font-size: 14px;
 	padding: 5px;
 }
+
+/* Sortable */
+
+#sortable {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#sortable li {
+	background-color: yellow;
+	margin-bottom: 2px;
+	cursor:move;
+}
+
+/* Actions */
+
+.book_add {
+	background-image: url('../images/16x16/book_add.png');
+	padding-left: 20px;
+	background-repeat: no-repeat;
+}
+
+.folder_add {
+	background-image: url('../images/16x16/folder_add.png');
+	padding-left: 20px;
+	background-repeat: no-repeat;
+}
+
+.order_items {
+	background-image: url('../images/16x16/table_edit.png');
+	padding-left: 20px;
+	background-repeat: no-repeat;
+}
+
+.save {
+	background-image: url('../images/16x16/disk.png');
+	padding-left: 20px;
+	background-repeat: no-repeat;
+}
+
+.cancel {
+	background-image: url('../images/16x16/cancel.png');
+	padding-left: 20px;
+	background-repeat: no-repeat;
+}

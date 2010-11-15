@@ -14,6 +14,7 @@ Archive::Application.routes.draw do
   match '/move', :controller => :move, :action => :index
   match '/moveplace', :controller => :move, :action => :move
   match '/change_nomenclature', :controller => :places, :action => :change_nomenclature
+  match '/reorder', :controller => :places, :action => :reorder
   match '/reports', :controller => :reports, :action => :index
 
   # root path

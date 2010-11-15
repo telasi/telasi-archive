@@ -1,16 +1,14 @@
 class PlacesController < ApplicationController
   before_filter :check_edit, :except => [:index]
 
-  # თაროების გამოჩენა
   def index
     @parent = ar_get_parent
     @nomenclatures = Nomenclature.all(:include => :direqcia, :order => 'direqcias.code, nomenclatures.code')
     @active_nom = ar_get_active_nomenclature
 
-    # სიის ამოღება ზედა დონის მიხედვით
     if @parent
       @places = Place.all(:order => :name, :conditions => ["parent_id = ?", @parent.id])
-      @books = Book.all(:order => :order_by, :conditions => ["place_id = ?", @parent.id])
+      @books = Book.all(:order => 'custom_order, order_by', :conditions => ["place_id = ?", @parent.id])
       @title = @parent.name
     else
       @places = Place.all(:order => :name, :conditions => ["parent_id is null"])
@@ -25,7 +23,6 @@ class PlacesController < ApplicationController
     end
   end
 
-  # ნომენკლატურის შეცვლის ბრძანება
   def change_nomenclature
     parent = ar_get_parent
     active_nom = ar_get_active_nomenclature
@@ -121,6 +118,23 @@ class PlacesController < ApplicationController
         format.html { redirect_to(:controller => :places, :action => :index) }
       end
       format.xml  { head :ok }
+    end
+  end
+
+  def reorder
+    if request.post?
+      books = params[:books]
+      size = books.size - 1
+      for i in 0..size
+        book = Book.find(books[i])
+        book.custom_order = i
+        book.save
+      end
+      render :text => places_url(:parent_id => params[:parent_id])
+    else
+      @title = 'თაროების დალაგება'
+      @parent = ar_get_parent
+      @books = Book.all(:order => 'custom_order, order_by', :conditions => ["place_id = ?", @parent.id])
     end
   end
 

@@ -1,0 +1,43 @@
+<script type="text/javascript">
+var REORDER_URL = "<%= reorder_url(:parent_id => @parent.id) %>";
+$(function() {
+	$( "#sortable" ).sortable();
+	$( "#sortable" ).disableSelection();
+	$( "#save_order" ).click(function () {
+		save_order();
+		return false;
+	});
+});
+function save_order() {
+	var items = $( ".item" );
+	var books = new Array();
+	for (i = 0; i < items.length; i++) {
+		books[i] = $(items[i]).attr("book_id");
+	}
+	$.ajax({
+		type: 'POST',
+		url: REORDER_URL,
+		dataType: 'html',
+		data: {books: books},
+		success: function(data) {
+			window.location = data;
+		},
+		error: function(data,text,error) {
+			alert("სერვერის შეცდომა: სცადეთ ხელახლა მოგვიანებით.");
+			show_submit();
+		}
+	});
+}
+</script>
+<h1><%= @parent.name %></h1>
+<% if @books.any? -%>
+<div class="action">
+<%= link_to 'შენახვა', '#', :class => 'save', :id => 'save_order' %> &middot;
+<%= link_to 'გაუქმება', places_url(:parent_id => @parent.id), :class => 'cancel' %>
+</div>
+<ul id="sortable">
+<% @books.each do |book| -%>
+<li book_id="<%= book.id %>" class="item"><b><%= book.order_by %></b>: <%= book.name %></li>
+<% end -%>
+</ul>
+<% end -%>
