@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/36/trunk/archive/app/views/site
+END
+index.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/25/trunk/archive/app/views/site/index.html.erb
+END
+change_password.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/36/trunk/archive/app/views/site/change_password.html.erb
+END
+login.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/6/trunk/archive/app/views/site/login.html.erb
+END
+logout.html.erb
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/6/trunk/archive/app/views/site/logout.html.erb
+END

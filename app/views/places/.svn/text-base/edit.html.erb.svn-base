@@ -1,0 +1,16 @@
+<!-- მარშრუტი -->
+<div id="location"><%= place_location(@place.parent) %></div>
+
+<h1><%= h @place.name %></h1>
+
+<% form_for(@place) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name, "სახელი" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'შენახვა' %>
+  </p>
+<% end %>

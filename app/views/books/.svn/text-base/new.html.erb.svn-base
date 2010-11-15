@@ -1,0 +1,35 @@
+<!-- მარშრუტი -->
+<div id="location"><%= place_location(@parent) %></div>
+<h1>ახალი წიგნი</h1>
+
+<% form_for(@book) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name, 'სახელი' %><br />
+    <%= f.text_field :name, :size => 60 %>
+  </p>
+  <p>
+    <%= f.label :order_by, 'დალაგება' %><br />
+    <%= f.text_field :order_by, :size => 4 %>
+  </p>
+  <p>
+    <%= f.label :page_count, 'ფურცლების რაოდენობა' %><br />
+    <%= f.text_field :page_count, :size => 4 %>
+  </p>
+  <p>
+    <%= f.label :nomenclature, 'ნომენკლატურა' %><br />
+    <%= f.collection_select(:nomenclature_id, Nomenclature.all(:include => :direqcia, :order => 'direqcias.code, nomenclatures.code'), :id, :to_s) %>
+  </p>
+  <p>
+    <%= f.label :start_date, 'საწყისი თარიღი' %><br />
+    <%= calendar_date_select_tag 'book[start_date]', @book.start_date, :year_range => 20.years.ago..20.years.from_now %>
+  </p>
+  <p>
+    <%= f.label :end_date, 'საბოლოო თარიღი' %><br />
+    <%= calendar_date_select_tag 'book[end_date]', @book.end_date, :year_range => 20.years.ago..20.years.from_now %>
+  </p>
+  <p>
+    <%= f.submit 'შენახვა' %>
+  </p>
+<% end %>

@@ -1,0 +1,20 @@
+<h1><%= h @direqcia.name %></h1>
+
+<% form_for(@direqcia) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :code, 'კოდი' %><br />
+    <%= f.text_field :code, :size => 4 %>
+  </p>
+  <p>
+    <%= f.label :name, 'სახელი' %><br />
+    <%= f.text_field :name, :size => 60 %>
+  </p>
+  <p>
+    <%= f.submit 'შენახვა' %>
+  </p>
+<% end %>
+
+<%= link_to 'ნახვა', @direqcia %> |
+<%= link_to 'სიაში დაბრუნება', direqcias_path %>

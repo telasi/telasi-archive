@@ -1,0 +1,18 @@
+<!-- მარშრუტი -->
+<div id="location"><%= place_location(@parent) %></div>
+<h1>ახალი თარო</h1>
+
+<% form_for(@place) do |f| %>
+  <%= f.error_messages %>
+
+<%= f.hidden_field :parent_id %>
+
+  <p>
+    <%= f.label :name, "სახელი" %><br />
+    <%= f.text_field :name %>
+  </p>
+  
+  <p>
+    <%= f.submit 'შენახვა' %>
+  </p>
+<% end %>

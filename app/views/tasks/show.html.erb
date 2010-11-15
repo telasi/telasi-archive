@@ -1,0 +1,20 @@
+<h1><%= image_tag @task.image %> <%=h @task.subject %></h1>
+
+<div class="action">
+<%= image_tag '16x16/user_comment.png' %>
+<%= link_to 'შენიშვნის დამატება', :id => @task.id, :action => 'new_body' %>  |
+<%= image_tag '16x16/pencil.png' %>
+<%= link_to 'სათაურის შეცვლა', edit_task_path(@task) %> |
+<%= image_tag '16x16/bin_closed.png' %>
+<%= link_to 'წაშლა', @task, :confirm => 'დაადასტურეთ ამ დავალების წაშლა.', :method => :delete %>
+</div>
+
+<% @task.bodies.each do |body| -%>
+<div class="task">
+<div class="created_by">
+<div class="created_at"><%= ar_date_time body.created_at %></div>
+<%= link_to h(body.from.full_name), body.from %>
+</div>
+<div class="body"><%= body.body_text %></div>
+</div>
+<% end %>

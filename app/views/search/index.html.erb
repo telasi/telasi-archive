@@ -1,0 +1,50 @@
+<h1>წიგნების ძებნა</h1>
+
+<div style="width: 300px; float: right; background-color: yellow; padding: 5px; border: 1px solid orange;">
+<p style="margin: 0px;">
+ძებნისას გამოიყენეთ სიმბოლოები <b>?</b> და <b>%</b>, შესაბამისად,
+ერთი ან რამოდენიმე უცნობი სიმბოლოს აღსანიშნავად.
+</p>
+</div>
+
+<% form_tag request.url, :method => 'get' do -%>
+
+<fieldset style="border: none;">
+<div>
+	<label for="name" style="display: inline-block; width: 120px; text-align: right;">დასახელება:</label>
+	<%= text_field :search, :name %>
+</div>
+<div>
+	<label for="name" style="display: inline-block; width: 120px; text-align: right;">დირექცია:</label>
+	<%= collection_select 'search', 'direqcia_id', Direqcia.all(:order => :code), :id, :code, {:include_blank => true} %>
+</div>
+<div>
+	<label for="nomenclature_id" style="display: inline-block; width: 120px; text-align: right;">ნომენკლატურა:</label>
+	<%= collection_select 'search', 'nomenclature_id', Nomenclature.all(:include => :direqcia, :order => 'direqcias.code, nomenclatures.code'), :id, :to_s, {:include_blank => true} %>
+</div>
+<div style="margin-left: 125px;">
+	<%= submit_tag "ძებნა" %>
+</div>
+</fieldset>
+<% end -%>
+
+<div style="border-top: 1px solid red; clear: both;">
+<% unless @books.nil? or @books.empty? -%>
+<% @books.each do |book| -%>
+<div class="list_row">
+<div class="list_item2" style=" width: 800px;">
+<%= image_tag '16x16/book.png', :style => 'vertical-align: middle;' %>
+<b><%= h book.nomenclature.to_s %></b>
+<%= link_to h(book.name), book %>
+<b>[<% if book.place.parent -%>
+<%= link_to h(book.place.parent.name), :controller => :places, :action => :index, :parent_id => book.place.parent.id %>
+<% end -%> &gt;
+<%= link_to h(book.place.name), :controller => :places, :action => :index, :parent_id => book.place.id %>]</b>
+</div>
+</div>
+<% end -%>
+<%= will_paginate @books, :previous_label => '&lt; წინა', :next_label => 'შემდეგი &gt;' %>
+<% else -%>
+<p style="font-style: italic; color: gray;">სია ცარიელია</p>
+<% end -%>
+</div>

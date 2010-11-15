@@ -1,0 +1,25 @@
+<h1>წიგნების სია</h1>
+
+<table>
+  <tr>
+    <th>სახელი</th>
+    <th>დალაგება</th>
+    <th>ნომენკლატურა</th>
+    <th>საწყისი</th>
+    <th>საბოლოო</th>
+    <th>შეიქმნა</th>
+    <th>განახლდა</th>
+  </tr>
+
+<% @books.each do |book| %>
+  <tr>
+    <td><%= link_to h(book.name), book %></td>
+    <td><%=h book.order_by %></td>
+    <td><%=h book.nomenclature %></td>
+    <td><%=h book.start_date %></td>
+    <td><%=h book.end_date %></td>
+    <td><%=h book.created_at %></td>
+    <td><%=h book.updated_at %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,20 @@
+<div class="action">
+<%= image_tag '16x16/tag_blue_add.png' %>
+<%= link_to 'ახალი ნომენკლატურა', new_nomenclature_path %>
+</div>
+<!-- დირექციების სია -->
+<% if @nomenclatures.empty? -%>
+<p style="font-style: italic; color: gray;">სია ცარიელია</p>
+<% else -%>
+<% @nomenclatures.each do |nomenclature| -%>
+<div class="list_row">
+<div class="list_item" style=" width: 500px;">
+<b><%=h nomenclature.direqcia.code %>/<%=h nomenclature.code %></b>
+<td><%=h nomenclature.name %></td>
+</div>
+<%= link_to 'ნახვა', nomenclature %></td>
+<%= link_to 'შეცვლა', edit_nomenclature_path(nomenclature) %></td>
+<%= link_to 'წაშლა', nomenclature, :confirm => 'დაადასტურეთ ნომენკლატურის წაშლა.', :method => :delete %></td>
+</div>
+<% end -%>
+<% end -%>

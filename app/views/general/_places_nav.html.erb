@@ -1,0 +1,5 @@
+<%= link_to 'საწყისი', places_url %>
+<% links.each do |link| -%>
+&gt;
+<%= link_to link[:name], link[:url] %>
+<% end -%>

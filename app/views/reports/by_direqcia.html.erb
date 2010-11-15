@@ -1,0 +1,20 @@
+<h1>წიგნების რაოდენობა დირექციების მიხედვით</h1>
+
+<table class="report">
+<tr>
+<th>კოდი</th>
+<th>დირექცია</th>
+<th>რაოდენობა</th>
+</tr>
+<% @data.each do |row| %>
+<tr>
+<td><%= row[0].code %></td>
+<td><%= link_to row[0].name, row[0] %></td>
+<td class="numeric"><%= number_with_delimiter row[1] %></td>
+</tr>
+<% end -%>
+<tr>
+<td colspan="2" class="summary">ჯამი</td>
+<td class="summary numeric"><%= number_with_delimiter @count %></td>
+</tr>
+</table>

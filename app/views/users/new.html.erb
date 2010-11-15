@@ -1,0 +1,43 @@
+<h1>ახალი მომხმარებელი</h1>
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name, "მომხმარებელი" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :password, "პაროლი" %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation, "პაროლის დადასტურება" %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
+    <%= f.label :first_name, "სახელი" %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name, "გვარი" %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :phone, "ტელეფონი" %><br />
+    <%= f.text_field :phone %>
+  </p>
+  <p>
+    <%= f.label :admin, "არის თუ არა ადმინისტრატორი?" %>
+    <%= f.check_box :admin %>
+  </p>
+  <p>
+    <%= f.label :admin, "რედაქტირების უფლება?" %>
+    <%= f.check_box :editarchive %>
+  </p>
+  <p>
+    <%= f.submit 'შენახვა' %>
+  </p>
+<% end %>
+
+<%= link_to 'სიაში დაბრუნება', users_path %>

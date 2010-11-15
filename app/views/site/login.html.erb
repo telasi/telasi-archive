@@ -1,0 +1,24 @@
+<div>
+<h1>მომხმარებლის ავტორიზაცია</h1>
+
+<% form_tag do -%>
+<fieldset style="border: none;">
+<div>
+	<label for="name" style="display: inline-block; width: 120px; text-align: right;">მომხმარებელი:</label>
+	<%= text_field_tag :name, params[:name] %>
+</div>
+<div>
+	<label for="password" style="display: inline-block; width: 120px; text-align: right;">პაროლი:</label>
+	<%= password_field_tag :password, params[:password] %>
+</div>
+<div style="margin-left: 125px;">
+	<%= submit_tag "შესვლა" %>
+</div>
+</fieldset>
+<% end -%>
+</div>
+
+<div style="color: white; width: 500px; background: red; padding: 10px;">
+ვისაც არა გაქვთ ავტორიზაციისთვის საჭირო მონაცემები,
+გთხოვთ, დაურეკოთ დიმიტრი ყურაშვილს (შიდა ნომერი 868).
+</div>

@@ -1,0 +1,90 @@
+body {
+	font-size: 10pt;
+	margin: 0px;
+}
+
+#header, #menu, #user, #copy, .sidebar, .action, .list_action2, #notice {
+	display:none;
+}
+
+h1 {
+	font-size: 14pt;
+	border-bottom: 2pt solid blue;
+	margin: 0pt;
+	margin-bottom: 10pt;
+	padding: 5pt; 
+}
+
+#location {
+	font-weight: bold;
+	margin: 0pt;
+	margin-bottom: 10pt;
+	border-bottom: 2pt solid blue;
+	padding: 5pt; 
+	font-size: 12pt;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.list_row {
+	padding: 2pt;
+	border-bottom: 1px dotted;
+}
+
+/******
+დავალებების სტილები
+******/
+
+.task {
+	border: 1pt solid;
+	margin-bottom: 10pt;
+	margin: 5pt;
+}
+
+.task .created_at {
+	float: right;
+	font-style: italic;
+	font-weight: normal;
+	font-size: 10pt;
+}
+.task .created_by {
+	border-bottom: 1pt solid;
+	padding: 5pt;
+	font-weight: bold;
+	font-size: 12pt;
+	background-color: yellow !important;
+}
+
+.task .body {
+	font-size: 11.5pt;
+	padding: 5pt;
+}
+
+/* Report */
+
+table.report {
+}
+
+table.report th {
+	text-align: center;
+	padding: 5pt;
+}
+
+table.report td {
+	font-size: 12pt;
+	border: 1pt solid black;
+	padding: 5pt;
+}
+
+table.report td.summary {
+	font-weight: bold;
+	text-align: center;
+	border: none !important;
+}
+
+table.report td.numeric {
+	text-align: right;
+}

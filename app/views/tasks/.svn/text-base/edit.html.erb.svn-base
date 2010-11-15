@@ -1,0 +1,15 @@
+<h1>დავალების სათაურის შეცვლა</h1>
+
+<% form_for(@task) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :subject, 'სათაური' %><br />
+    <%= f.text_field :subject, :size => 60 %>
+  </p>
+  <p>
+    <%= f.submit 'სათაურის შეცვლა' %>
+  </p>
+<% end %>
+
+<%= link_to 'ნახვა', @task %>

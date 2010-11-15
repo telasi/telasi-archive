@@ -1,0 +1,35 @@
+<h1>დავალებები</h1>
+
+<p>
+სიაში ქვემოთ მოცემულია დავალებები, რომლებიც თქვენ გაეცით არქივის თანამშრომელზე.
+დავალების სტატუსის გასაგებად დააკვირდით მის გამოსახულებას. 
+<%= image_tag '16x16/application.png' %> აღნიშნავს "ღია" დავალებას.
+<%= image_tag '16x16/bell.png' %> აღნიშნავს არქივის თანამშრომლის მიერ უკვე "შესრულებულ" დავალებას.
+<%= image_tag '16x16/accept.png' %> აღნიშნავს "დახურულ" დავალებას.
+</p>
+
+<div class="action">
+<%= image_tag '16x16/user_comment.png' %>
+<%= link_to 'ახალი დავალება', new_task_path %>
+
+</div>
+
+<% unless @tasks.nil? or @tasks.empty? -%>
+<% @tasks.each do |task| %>
+<div class="list_row" style="border: 1px solid silver; padding: 5px; margin-bottom: 5px; background: <%= task.color %>;">
+<div style="float: right;">
+<%= link_to task.from.full_name, task.from %> <%= task.created_at %>
+</div>
+<div class="list_item2">
+<%= image_tag task.image %>
+<span style="font-size: 16px; font-weight: bold">
+<%=link_to h(task.subject), task %>
+</span><br/>
+<%= h task.last_body %>
+</div>
+</div>
+<% end -%>
+<%= will_paginate @books, :previous_label => '&lt; წინა', :next_label => 'შემდეგი &gt;' %>
+<% else -%>
+<p style="font-style: italic; color: gray;">სია ცარიელია</p>
+<% end -%>

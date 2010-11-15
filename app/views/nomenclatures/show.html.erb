@@ -1,0 +1,21 @@
+<h1><%= h @nomenclature %></h1>
+
+<p>
+  <b>დირექცია:</b>
+  <%= link_to h(@nomenclature.direqcia.code), @nomenclature.direqcia %>
+  (<%= h @nomenclature.direqcia.name %>)
+</p>
+
+<p>
+  <b>კოდი:</b>
+  <%=h @nomenclature.code %>
+</p>
+
+<p>
+  <b>სახელი:</b>
+  <%=h @nomenclature.name %>
+</p>
+
+
+<%= link_to 'შეცვლა', edit_nomenclature_path(@nomenclature) %> |
+<%= link_to 'სიაში დაბრუნება', nomenclatures_path %>

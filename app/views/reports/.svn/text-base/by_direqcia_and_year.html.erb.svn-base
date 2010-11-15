@@ -1,0 +1,28 @@
+<h1>წიგნების რაოდენობა დირექციების და წლების მიხედვით</h1>
+
+<table class="report">
+<tr>
+<th>წელი</th>
+<th>კოდი</th>
+<th>დირექცია</th>
+<th>რაოდენობა</th>
+</tr>
+<% @data.each do |datum| -%>
+<% datum[:year_data].each do |year_datum| -%>
+<tr>
+<td><%= year_datum[:year] %></td>
+<td><%= year_datum[:direqcia].code %></td>
+<td><%= link_to year_datum[:direqcia].name, year_datum[:direqcia] %></td>
+<td class="numeric"><%= number_with_delimiter year_datum[:count] %></td>
+</tr>
+<% end -%>
+<tr>
+<td class="summary" colspan="3">ჯამი <%= datum[:year] %> წლისთვის</td>
+<td class="summary numeric"><%= number_with_delimiter datum[:count] %></td>
+</tr>
+<% end -%>
+<tr>
+<td class="summary" colspan="3">სრული ჯამი</td>
+<td class="summary numeric"><%= number_with_delimiter @total_count %></td>
+</tr>
+</table>

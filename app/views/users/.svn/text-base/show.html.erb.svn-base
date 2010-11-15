@@ -1,0 +1,27 @@
+<h1><%= @user.first_name %> <%= @user.last_name %></h1>
+<p>
+  <b>მომხმარებელიs:</b>
+  <%=h @user.name %>
+</p>
+<p>
+  <b>სახელი:</b>
+  <%=h @user.first_name %>
+</p>
+<p>
+  <b>გვარი:</b>
+  <%=h @user.last_name %>
+</p>
+<p>
+  <b>ტელეფონი:</b>
+  <%=h @user.phone %>
+</p>
+<p>
+  <b>არის თუ არა ადმინისტრატორი?</b>
+  <%=h @user.admin %>
+</p>
+<p>
+  <b>რედაქტირების უფლება?</b>
+  <%=h @user.editarchive %>
+</p>
+<%= link_to 'შეცვლა', edit_user_path(@user) %> |
+<%= link_to 'სიაში დაბრუნება', users_path %>

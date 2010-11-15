@@ -1,0 +1,242 @@
+body {
+	margin: 0px;
+}
+
+h1 {
+	font-size: 18px;
+	margin: 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+}
+
+#content h1 {
+	font-size: 16px;
+	color: gray;
+	border-bottom: 1px solid gray;
+	margin: 0px;
+	margin-bottom: 10px;
+}
+
+#content h2 {
+	font-size: 15px;
+	color: olive;
+	margin: 0px;
+	margin-bottom: 10px;
+}
+
+#location {
+	font-size: 12px;
+	font-weight: bold;
+	border: 1px solid orange;
+	padding: 5px;
+	margin-bottom: 10px;
+	background-color: #FFC;
+}
+
+#location a:HOVER {
+	background-color: orange;
+}
+
+#header {
+	font-size: 20px;
+	margin: 0px;
+	font-weight: bold;
+	background-color: silver;
+	border-bottom: 1px solid;
+}
+
+#header img {
+	vertical-align: middle;
+	width: 36px;
+}
+
+#notice {
+	position: absolute;
+	top: 0px;
+	display: block;
+	width: 100%;
+}
+
+#notice div {
+	padding: 3px;
+	background-color: #D80;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	
+}
+
+#menu {
+	height: 30px;
+	overflow: hidden;
+	padding-left: 5px;
+}
+
+#menu a {
+	text-decoration: none;
+}
+
+#menu span {
+	display: inline-block;
+	padding-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 5px;
+	color: white;
+	
+}
+
+#menu .tab1 {
+	height: 25px;
+}
+
+#menu .tab2 {
+	height: 19px;
+}
+
+#content {
+	padding: 5px;
+	margin: 0px;
+}
+
+#copy {
+	padding-top: 5px;
+	margin-top: 20px;
+	border-top: 1px solid;
+	text-align: center;
+	font-size: 10px;
+	clear: both;
+}
+
+#user {
+	position: absolute;
+	top: -5px;
+	right: 10px;
+	background-color: white;
+	padding: 5px;
+	border: 1px solid gray;
+}
+
+div.action {
+	margin-bottom: 5px;
+	background: #DFD;
+	padding: 5px;
+	border: 1px solid green;
+}
+
+div.list_row {
+	
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border-bottom: 1px dotted silver;
+}
+
+div.list_item {
+	overflow: hidden;
+	white-space: nowrap;
+	float: left;
+	margin-right: 10px;
+}
+
+div.list_item2 {
+	
+}
+
+div.list_action2 {
+	float: right;
+	text-align: center;
+}
+
+div.subform {
+	margin-top: 10px;
+	border: 1px solid orange;
+	padding: 10px;
+	background: #FFE;
+}
+
+/* will_paginate */
+
+.pagination {
+	padding-top: 5px;
+}
+
+.disabled {
+	color: silver;
+}
+
+.current {
+	padding: 2px;
+	border: 1px solid red;
+	background: yellow;
+}
+
+.prev_page, .next_page {
+	text-decoration: none;
+}
+
+/* sidebar */
+
+div.sidebar {
+	display: inline-block;
+	float: right;
+	width: 250px;
+	border: 1px solid purple;
+	background-color: #EEE;
+	padding: 5px;
+}
+
+div.content_withsidebar {
+	margin-right: 270px;
+}
+
+/* Report */
+
+table.report {
+}
+
+table.report th {
+	text-align: center;
+	padding: 5px;
+}
+
+table.report td {
+	font-size: 14px;
+	border: 1px solid black;
+	padding: 5px;
+}
+
+table.report td.summary {
+	font-weight: bold;
+	text-align: center;
+	border: none !important;
+}
+
+table.report td.numeric {
+	text-align: right;
+}
+
+/* დავალებების სტილები */
+
+.task {
+	border: 1px solid orange;
+	margin-bottom: 10px;
+}
+
+.task .created_at {
+	float: right;
+	font-style: italic;
+}
+.task .created_by {
+	border-bottom: 1px solid orange;
+	padding: 5px;
+	background-color: #FFC;
+}
+
+.task .body {
+	font-size: 14px;
+	padding: 5px;
+}

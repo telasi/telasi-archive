@@ -1,0 +1,33 @@
+<h1>მომხმარებელთა სია</h1>
+
+<table>
+  <tr>
+    <th>მომხმარ</th>
+    <th>სახელი</th>
+    <th>გვარი</th>
+    <th>ტელ</th>
+    <th>ადმინ?</th>
+    <th>რედაქტ?</th>
+    <th>&nbsp;</th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%=h user.name %></td>
+    <td><%=h user.first_name %></td>
+    <td><%=h user.last_name %></td>
+    <td><%=h user.phone %></td>
+    <td><%=h user.admin %></td>
+    <td><%=h user.editarchive %></td>
+    <td>
+    	<%= link_to 'ნახვა', user %> |
+    	<%= link_to 'შეცვლა', edit_user_path(user) %> |
+    	<%= link_to 'წაშლა', user, :confirm => 'დაადასტურეთ მომხმარებლის წაშლა', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'ახალი მომხმარებელი', new_user_path %>

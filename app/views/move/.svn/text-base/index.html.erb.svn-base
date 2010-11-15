@@ -1,0 +1,48 @@
+<table width="100%" cellspacing="2" cellpadding="1">
+<tr>
+<!-- მარცხენა ნაწილი -->
+<td width="50%" style="border: 1px solid purple; padding: 5px; background: #EEE; vertical-align: top;">
+<div id="location"><%= place_location_move(@parent1, @parent2, 1) %></div>
+<% @places1.each do |place| -%>
+<div class="list_row">
+<div class="list_action2"><%= move_link place.id, @parent1, @parent2, 1, 'place' %></div>
+<div class="list_item2" style="float: none;">
+<%= image_tag '16x16/folder.png', :style => "vertical-align: middle;" %>
+<%= link_to h(place.name), :params => places_params(place, @parent2, :parent_id1, :parent_id2) %>
+</div>
+</div>
+<% end -%>
+<% if @books1.each do |book| -%>
+<div class="list_row">
+<div class="list_action2"><%= move_link book.id, @parent1, @parent2, 1, 'book' %></div>
+<div class="list_item2" style=" width: 500px;">
+<%= image_tag '16x16/book.png', :style => "vertical-align: middle;" %>
+<%= h(book.name) %>
+</div>
+</div>
+<% end; end -%>
+</td>
+<!-- მარჯვენა ნაწილი -->
+<td width="50%" style="border: 1px solid purple; padding: 5px; background: #EEE;  vertical-align: top;">
+<div id="location"><%= place_location_move(@parent1, @parent2, 2) %></div>
+<% @places2.each do |place| -%>
+<div class="list_row">
+<div class="list_action2"><%= move_link place.id, @parent1, @parent2, 2, 'place' %></div>
+<div class="list_item2" style="float: none;">
+<%= image_tag '16x16/folder.png', :style => "vertical-align: middle;" %>
+<%= link_to h(place.name), :params => places_params(@parent1, place, :parent_id1, :parent_id2) %>
+</div>
+</div>
+<% end -%>
+<% if @books2.each do |book| -%>
+<div class="list_row">
+<div class="list_action2"><%= move_link book.id, @parent1, @parent2, 2, 'book' %></div>
+<div class="list_item2" style=" width: 500px;">
+<%= image_tag '16x16/book.png', :style => "vertical-align: middle;" %>
+<%= h(book.name) %>
+</div>
+</div>
+<% end; end -%>
+</td>
+</tr>
+</table>

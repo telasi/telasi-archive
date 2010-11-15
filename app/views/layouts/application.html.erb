@@ -1,0 +1,27 @@
+<!DOCTYPE html">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ka-GE" lang="ka-GE">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<title><%= @title %> &mdash; არქივი</title>
+<%= stylesheet_link_tag 'scaffold', 'default', 'ui-lightness/jquery' %>
+<%= stylesheet_link_tag 'print', :media => :print %>
+<%= javascript_include_tag "jquery.js", "jquery-ui.js", "rails.js", "archive.js" %>
+<%= csrf_meta_tag %>
+</head>
+<body>
+<% if notice -%>
+<!-- მესიჯი -->
+<div id="notice"><div><%= notice %></div></div>
+<% end -%>
+<!-- სათაურის გაფორმება -->
+<%= render :partial => "general/header" %>
+<%= render :partial => "general/user" %>
+<%= render :partial => "general/menu" %>
+<!-- ძირითადი ნაწილი -->
+<div id = "content">
+<%= yield %>
+</div>
+<!-- ქვედა ნაწილი -->
+<%= render :partial => "general/footer" %>
+</body>
+</html>

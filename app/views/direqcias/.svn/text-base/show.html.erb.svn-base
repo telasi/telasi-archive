@@ -1,0 +1,21 @@
+<h1><%=h @direqcia.name %></h1>
+
+<p>
+  <b>კოდი:</b>
+  <%=h @direqcia.code %>
+</p>
+
+<p>
+  <b>სახელი:</b>
+  <%=h @direqcia.name %>
+</p>
+
+<%= link_to 'შეცვლა', edit_direqcia_path(@direqcia) %> |
+<%= link_to 'სიაში დაბრუნება', direqcias_path %>
+
+<!-- ქვეფორმა -->
+<% @nomenclatures = @direqcia.nomenclatures -%>
+<div class="subform">
+<h1>ნომენკლატურები <%= @direqcia.code %>-ში</h1>
+<%= render :partial => 'nomenclatures/list' %>
+</div>

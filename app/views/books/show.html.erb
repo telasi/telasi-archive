@@ -1,0 +1,43 @@
+<!-- მარშრუტი -->
+<div id="location"><%= place_location(@book.place) %></div>
+<h1><%= @book.name %></h1>
+<p>
+  <b>სახელი:</b>
+  <%=h @book.name %>
+</p>
+<p>
+  <b>დალაგება:</b>
+  <%=h @book.order_by %>
+</p>
+<p>
+  <b>ფურცლების რაოდენობა:</b>
+  <%=h @book.page_count %>
+</p>
+<p>
+  <b>ნომენკლატურა:</b>
+  <%= link_to h(@book.nomenclature), @book.nomenclature %>
+</p>
+
+<p>
+  <b>საწყისი თარიღი:</b>
+  <%=h ar_date(@book.start_date) %>
+</p>
+
+<p>
+  <b>საბოლოო თარიღი:</b>
+  <%=h ar_date(@book.end_date) %>
+</p>
+
+<p>
+  <b>შემოვიდა:</b>
+  <%=h ar_date_time(@book.created_at) %>
+</p>
+
+<p>
+  <b>ბოლო განახლება:</b>
+  <%=h ar_date_time(@book.updated_at) %>
+</p>
+
+
+<%= link_to 'შეცვლა', edit_book_path(@book) %> |
+<%= link_to 'კოპირება', new_book_path(:copy_id => @book.id, :parent_id => @book.place.id) %>

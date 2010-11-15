@@ -1,0 +1,19 @@
+<h1>ახალი დავალება</h1>
+
+<% form_for(@task) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :subject, 'დავალების სათაური' %><br />
+    <%= f.text_field :subject, :size => 60 %>
+  </p>
+  <p>
+    <%= f.label :last_body, 'ჩაწერეთ აქ თქვენი მოთხოვნის შინაარსი' %><br />
+    <%= f.text_area :last_body, :size => '60x10' %>
+  </p>
+  <p>
+    <%= f.submit 'გაგზავნა' %>
+  </p>
+<% end %>
+
+<%= link_to 'სიაში დაბრუნება', tasks_path %>

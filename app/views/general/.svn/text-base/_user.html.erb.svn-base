@@ -1,0 +1,5 @@
+<div id="user">
+<b><%= session[:user].first_name %> <%= session[:user].last_name %></b>
+<%= link_to 'პაროლის შეცვლა', :controller => 'site', :action => 'change_password' %> |
+<%= link_to 'გასვლა', :controller => 'site', :action => 'logout' %>
+</div>

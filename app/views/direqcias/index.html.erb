@@ -1,0 +1,23 @@
+<h1>დირექციები</h1>
+<div class="action">
+<%= image_tag '16x16/user_add.png' %>
+<%= link_to 'ახალი დირექცია', new_direqcia_path %>
+</div>
+<!-- დირექციების სია -->
+<% if @direqcias.empty? -%>
+<p style="font-style: italic; color: gray;">სია ცარიელია</p>
+<% else -%>
+<% @direqcias.each do |direqcia| -%>
+<div class="list_row">
+<div class="list_item" style=" width: 300px;">
+<b><%=h direqcia.code %></b>
+<%=h direqcia.name %>
+</div>
+<div>
+<%= link_to 'ნახვა', direqcia %>
+<%= link_to 'შეცვლა', edit_direqcia_path(direqcia) %>
+<%= link_to 'წაშლა', direqcia, :confirm => 'დაადასტურეთ დირექციის წაშლა.', :method => :delete %>
+</div>
+</div>
+<% end -%>
+<% end -%>

@@ -1,0 +1,70 @@
+<!-- გზა მიმდინარე ადგილმდებარეობამდე -->
+<div id="location"><%= place_location(@parent) %></div>
+
+<!-- მოქმედებების სია -->
+<div class="action">
+<% if @parent -%>
+<%= image_tag '16x16/folder_add.png' %>
+<%= link_to 'ახალი თარო', new_place_path(:parent_id => @parent.id) %> |
+<%= image_tag '16x16/book_add.png' %>
+<%= link_to 'ახალი წიგნი', new_book_path(:parent_id => @parent.id) %>
+<% else -%>
+<%= image_tag '16x16/folder_add.png' %>
+<%= link_to 'ახალი თარო', new_place_path %>
+<% end %>
+</div>
+
+<!-- ნომენკლატურების სია -->
+<div class="sidebar">
+<p><b>აქტიური ნომენკლატურა:</b> 
+<% if @active_nom -%>
+<%= @active_nom %>
+<%= link_to 'წაშლა', :parent_id => @parent ? @parent.id : nil, :nomenclature_id => ''  %>
+<% else -%> (ცარიელი)
+<% end -%>
+</p>
+<% @nomenclatures.each do |nomenclature| -%>
+<%= nomenclature %> <%= link_to 'გააქტიურება', :parent_id => @parent ? @parent.id : nil, :nomenclature_id => nomenclature.id %><br/>
+<% end -%>
+<p style="background: yellow; padding: 5px; border: 1px solid orange; font-size: 12px;">აქტიური ნომენკლატურა გამოიყენება წიგნის ნომენკლატურის სწრაფად შესაცვლელად.</p>
+</div>
+
+<!-- თაროების სია -->
+<div class=content_withsidebar>
+<% if @places.empty? and @books.empty? -%>
+<p style="font-style: italic; color: gray;">სია ცარიელია</p>
+<% else -%>
+<% @places.each do |place| -%>
+<div class="list_row">
+<div class="list_action2">
+<%= link_to 'შეცვლა', edit_place_path(place) %>
+<%= link_to 'წაშლა', place, :confirm => 'დაადასტურეთ თაროს წაშლა.', :method => :delete %>
+</div>
+<div class="list_item2">
+<%= image_tag '16x16/folder.png', :style => "vertical-align: middle;" %>
+<%= link_to h(place.name), :parent_id => place.id %>
+</div>
+</div>
+<% end -%>
+
+<% # წიგნების გამოტანა
+if @books; @books.each do |book| -%>
+<div class="list_row">
+<div class="list_action2">
+<%= link_to 'შეცვლა', edit_book_path(book) %>
+<%= link_to 'წაშლა', book, :confirm => 'დაადასტურეთ წიგნის წაშლა.', :method => :delete %>
+<% if @active_nom -%>
+<%= link_to "გადაყვანა #{@active_nom}-ში", {:controller => :places, 'action' => :change_nomenclature, 'parent_id' => @parent ? @parent.id : nil, 'id' => book.id} %>
+<% end -%>
+</div>
+<div class="list_item2">
+<%= image_tag '16x16/book.png', :style => "vertical-align: middle;" %>
+[<%= book.order_by %>]
+<b><%= book.nomenclature %></b>
+<%= link_to h(book.name), book %>
+</div>
+</div>
+<% end; end -%>
+<% end -%>
+</div>
+<!-- სიის დასასრული -->
