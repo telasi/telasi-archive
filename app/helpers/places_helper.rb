@@ -15,11 +15,11 @@ private
     if place1 and place2
       {symbol1 => place1.id, symbol2 => place2.id}
     elsif place1
-      {symbol1 => place1.id}
+      {symbol1 => place1.id, symbol2 => 0}
     elsif place2
-      {symbol2 => place2.id}
+      {symbol2 => place2.id, symbol1 => 0}
     else
-      {}
+      {symbol1 => 0, symbol2 => 0}
     end
   end
 

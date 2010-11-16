@@ -4,20 +4,9 @@ class MoveController < ApplicationController
 
   # საწყისი კონტროლერი
   def index
-    # სათაურის მიყენება
     @title = 'გადატანა'
-
-    # 'ზედა დონის' პოვნა
-    parent_id1 = params[:parent_id1]
-    parent_id2 = params[:parent_id2]
-    if parent_id1
-      @parent1 = Place.find(parent_id1)
-    end
-    if parent_id2
-      @parent2 = Place.find(parent_id2)
-    end
-
-    # თაროების პოვნა
+    @parent1 = get_parent1
+    @parent2 = get_parent2
     @places1 = get_places(@parent1)
     @places2 = get_places(@parent2)
     @books1 = get_books(@parent1)
@@ -26,50 +15,64 @@ class MoveController < ApplicationController
 
   # გადატანის ოპერაცია
   def move
-    # პარამეტრების მიღება
-    parent_id1 = params[:parent_id1]
-    parent_id2 = params[:parent_id2]
+    parent1 = get_parent1
+    parent2 = get_parent2
     kind = params[:kind]
     id = params[:object_id]
     which = params[:which]
 
-    # დანიშნულების მიღება
-    if which.eql? '1'
-      new_parent_id = params[:parent_id2]
-    else
-      new_parent_id = params[:parent_id1]
-    end
-    newParent = Place.find(new_parent_id) if new_parent_id
+    newParent = which == '1' ? parent2 : parent1
 
-    # ობიექტის მოძებნა და ახალ ადგილას შენახვა
-    if 'book'.eql? kind
+    if kind == 'book'
       book = Book.find(id)
       if newParent
         book.place = newParent
         if book.save
-          flash[:notice] = "წიგნი გადატანილია #{newParent.name}-ზე"
+          flash[:notice] = "წიგნი გადატანილია"
         end
       else
         flash[:notice] = "ზედა დონეზე წიგნს ვერ გადაიტანთ"
       end
     else
       place = Place.find(id)
-      if validate_place_inclusion place, newParent
+      if validate_place_inclusion(place, newParent)
         place.parent = newParent
         if place.save
-          parentName = newParent ? newParent.name : 'საწყისი'
-          flash[:notice] = "თარო გადატანილია #{parentName}-ზე"
+          flash[:notice] = "თარო გადატანილია"
         end
       else
         flash[:notice] = "ჩადგმულ თაროში გადატანა არ შემიძლია"
       end
     end
 
-    # გადამისამართება
-    redirect_to move_url(:parent_id1 => parent_id1, :parent_id2 => parent_id2)
+    redirect_to move_url
   end
 
 private
+
+  def get_parent1
+    parent_id1 = params[:parent_id1]
+    if parent_id1
+      session[:move_parent_id1] = parent_id1.to_i == 0 ? nil : parent_id1.to_i  
+    end
+    if session[:move_parent_id1]
+      Place.find(session[:move_parent_id1])
+    else
+      nil
+    end
+  end
+
+  def get_parent2
+    parent_id2 = params[:parent_id2]
+    if parent_id2
+      session[:move_parent_id2] = parent_id2.to_i == 0 ? nil : parent_id2.to_i  
+    end
+    if session[:move_parent_id2]
+      Place.find(session[:move_parent_id2])
+    else
+      nil
+    end
+  end
 
   # თაროების პოვნა
   def get_places(parent)
