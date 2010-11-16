@@ -21,56 +21,106 @@ class SearchController < ApplicationController
 
   def index
     @title = 'წიგნების ძებნა'
+
     if params[:search]
       @search = Search.create(params[:search] ? params[:search] : {})
-      if @search.empty?
-        flash.now[:notice] = 'განსაზღვრეთ ძებნის პარამეტრები'
-        @books = []
-      else
-        where = ''
-        where_params = {}
-        # name
-        unless @search.name.nil? or @search.name.empty?
-          where += 'books.name like :name'
-          where_params[:name] = '%' + @search.name + "%"
-        end
-        # direqcia
-        unless @search.direqcia_id == 0
-          unless where.empty?
-            where += ' and '
-          end
-          where += 'nomenclatures.direqcia_id = :direqcia_id'
-          where_params[:direqcia_id] = @search.direqcia_id
-        end
-        # nomenclature
-        unless @search.nomenclature_id == 0
-          unless where.empty?
-            where += ' and '
-          end
-          where += 'nomenclature_id = :nomenclature_id'
-          where_params[:nomenclature_id] = @search.nomenclature_id
-        end
-        # book_year
-        unless @search.book_year.nil? or @search.book_year.empty?
-          unless where.empty?
-            where += ' and '
-          end
-          where += 'book_year = :book_year'
-          where_params[:book_year] = @search.book_year
-        end
-        # enter_year
-        unless @search.enter_year.nil? or @search.enter_year.empty?
-          unless where.empty?
-            where += ' and '
-          end
-          where += 'enter_year = :enter_year'
-          where_params[:enter_year] = @search.enter_year
-        end
-        # get books
-        #@books = Book.all(:conditions => [where, where_params], :include => :nomenclature)
-        @books = Book.paginate :page => params[:page], :conditions => [where, where_params], :include => :nomenclature, :order => 'books.name'
+      @books = find_books(@search)
+    else
+      @books = []
+    end
+
+    @links = []
+    @parent = find_parent
+    if @parent
+      parent = @parent
+      while parent
+        params[:parent_id] = parent.id
+        @links.push({ :url => url_for(search_url(params)), :name => parent.name })
+        parent = parent.parent
       end
     end
+    params[:parent_id] = 0
+    @links.push({ :url => url_for(search_url(params)), :name => 'საწყისი' })
+    @links = @links.reverse
+    @places = PlacesController.find_places(session[:search_parent_id])
+  end
+
+  def search_move
+    if check_edit
+      book = Book.find(params[:move_id])
+      parent = find_parent
+      book.place = parent
+      book.save
+      redirect_to search_url(:search => params[:search])
+    end
+  end
+
+private
+
+  def find_parent
+    if params[:parent_id]
+      if params[:parent_id] == '0'
+        session[:search_parent_id] = nil
+      else
+        session[:search_parent_id] = params[:parent_id]
+      end
+    end
+    if session[:search_parent_id]
+      Place.find(session[:search_parent_id].to_i)
+    else
+      nil
+    end
+  end
+
+  def find_books(search)
+    if search.empty?
+      flash.now[:notice] = 'განსაზღვრეთ ძებნის პარამეტრები'
+      books = []
+    else
+      where = ''
+      where_params = {}
+      # name
+      unless search.name.nil? or search.name.empty?
+        where += 'books.name like :name'
+        where_params[:name] = "%#{search.name}%"
+      end
+      # direqcia
+      unless search.direqcia_id == 0
+        unless where.empty?
+          where += ' and '
+        end
+        where += 'nomenclatures.direqcia_id = :direqcia_id'
+        where_params[:direqcia_id] = search.direqcia_id
+      end
+      # nomenclature
+      unless search.nomenclature_id == 0
+        unless where.empty?
+          where += ' and '
+        end
+        where += 'nomenclature_id = :nomenclature_id'
+        where_params[:nomenclature_id] = search.nomenclature_id
+      end
+      # book_year
+      unless search.book_year.nil? or search.book_year.empty?
+        unless where.empty?
+          where += ' and '
+        end
+        where += 'book_year = :book_year'
+         where_params[:book_year] = search.book_year
+      end
+      # enter_year
+      unless search.enter_year.nil? or search.enter_year.empty?
+        unless where.empty?
+          where += ' and '
+        end
+        where += 'enter_year = :enter_year'
+        where_params[:enter_year] = search.enter_year
+      end
+      # get books
+      #@books = Book.all(:conditions => [where, where_params], :include => :nomenclature)
+      books = Book.paginate :page => params[:page], :conditions => [where, where_params], :include => :nomenclature, :order => 'books.name'
+    end
+    books
   end
 
 end

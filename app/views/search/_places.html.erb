@@ -1,0 +1,20 @@
+<div id="location">
+<%	links.each do |link| -%>
+<% unless links.first == link -%>
+&gt;
+<%  end -%>
+<%= link_to link[:name], link[:url]  %>
+<%  end -%>
+</div>
+<div>
+
+<% if places.any? -%>
+<% places.each do |place|
+	params[:parent_id] = place.id
+	-%>
+<div><%= link_to place.name, search_url(params) %></div>
+<% end -%>
+<% else -%>
+<p style="font-style: italic; color: gray;">ქვეთაროები არ არის</p>
+<% end -%>
+</div>

@@ -1,14 +1,13 @@
 <h1>წიგნების ძებნა</h1>
 
-<div style="width: 300px; float: right; background-color: yellow; padding: 5px; border: 1px solid orange;">
+<!--div style="width: 300px; float: right; background-color: yellow; padding: 5px; border: 1px solid orange;">
 <p style="margin: 0px;">
 ძებნისას გამოიყენეთ სიმბოლოები <b>?</b> და <b>%</b>, შესაბამისად,
 ერთი ან რამოდენიმე უცნობი სიმბოლოს აღსანიშნავად.
 </p>
-</div>
+</div-->
 
 <% form_tag request.url, :method => 'get' do -%>
-
 <fieldset style="border: none;">
 <div>
    <label style="display: inline-block; width: 200px; text-align: right;">დასახელება:</label>
@@ -34,22 +33,14 @@
 <% end -%>
 
 <div style="border-top: 1px solid red; clear: both;">
-<% unless @books.nil? or @books.empty? -%>
-<% @books.each do |book| -%>
-<div class="list_row">
-<div class="list_item2" style=" width: 800px;">
-<%= image_tag '16x16/book.png', :style => 'vertical-align: middle;' %>
-<b><%= h book.nomenclature.to_s %></b>
-<%= link_to h(book.name), book %>
-<b>[<% if book.place.parent -%>
-<%= link_to h(book.place.parent.name), :controller => :places, :action => :index, :parent_id => book.place.parent.id %>
-<% end -%> &gt;
-<%= link_to h(book.place.name), :controller => :places, :action => :index, :parent_id => book.place.id %>]</b>
-</div>
-</div>
-<% end -%>
-<%= will_paginate @books, :previous_label => '&lt; წინა', :next_label => 'შემდეგი &gt;' %>
-<% else -%>
-<p style="font-style: italic; color: gray;">სია ცარიელია</p>
-<% end -%>
+<table width="100%">
+<tr>
+<td style="border: 1px solid purple; padding: 5px; background: #EEE;  vertical-align: top;">
+<%= render :partial => 'books', :locals => {:books => @books} %>
+</td>
+<td style="border: 1px solid purple; padding: 5px; background: #EEE;  vertical-align: top;" width="400">
+<%= render :partial => 'places', :locals => {:links => @links, :places => @places } %>
+</td>
+</tr>
+</table>
 </div>

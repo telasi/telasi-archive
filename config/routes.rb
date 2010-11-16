@@ -21,6 +21,7 @@ Archive::Application.routes.draw do
   match '/rep_by_direqcia', :controller => :reports, :action => :by_direqcia
   match '/rep_by_direqcia_and_year', :controller => :reports, :action => :by_direqcia_and_year
   match '/rep_by_direqcia_and_enter_year', :controller => :reports, :action => :by_direqcia_and_enter_year
+  match '/search_move', :controller => :search, :action => :search_move, :as => :search_move
 
   # root path
   root :to => 'site#index', :as => :home

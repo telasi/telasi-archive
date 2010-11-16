@@ -1,0 +1,23 @@
+<% if books.any? -%>
+<% books.each do |book| -%>
+<div class="list_row">
+<div class="list_item2" style=" width: 100%;">
+<% if @parent -%>
+<div class="list_action2">
+<%= link_to "გადატანა '#{@parent.name}'-ში", search_move_url({:search => params[:search], :move_id => book.id}) %>
+</div>
+<% end -%>
+<%= image_tag '16x16/book.png', :style => 'vertical-align: middle;' %>
+<b><%= h book.nomenclature.to_s %></b>
+<%= link_to h(book.name), book %>
+<b>[<% if book.place.parent -%>
+<%= link_to h(book.place.parent.name), :controller => :places, :action => :index, :parent_id => book.place.parent.id %>
+<% end -%> &gt;
+<%= link_to h(book.place.name), :controller => :places, :action => :index, :parent_id => book.place.id %>]</b>
+</div>
+</div>
+<% end -%>
+<%= will_paginate books, :previous_label => '&lt; წინა', :next_label => 'შემდეგი &gt;' %>
+<% else -%>
+<p style="font-style: italic; color: gray;">სია ცარიელია</p>
+<% end -%>

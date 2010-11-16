@@ -1,17 +1,25 @@
 class PlacesController < ApplicationController
   before_filter :check_edit, :except => [:index]
 
+  def self.find_places(parent_id)
+    if parent_id and parent_id.to_i != 0
+      Place.all(:order => :name, :conditions => ["parent_id = ?", parent_id])
+    else
+      Place.all(:order => :name, :conditions => ["parent_id is null"])
+    end
+  end
+
   def index
     @parent = ar_get_parent
     @nomenclatures = Nomenclature.all(:include => :direqcia, :order => 'direqcias.code, nomenclatures.code')
     @active_nom = ar_get_active_nomenclature
 
     if @parent
-      @places = Place.all(:order => :name, :conditions => ["parent_id = ?", @parent.id])
+      @places = PlacesController.find_places(@parent.id)
       @books = Book.all(:order => 'custom_order, order_by', :conditions => ["place_id = ?", @parent.id])
       @title = @parent.name
     else
-      @places = Place.all(:order => :name, :conditions => ["parent_id is null"])
+      @places = PlacesController.find_places(nil)
       @books = []
       @title = 'თაროები'
     end

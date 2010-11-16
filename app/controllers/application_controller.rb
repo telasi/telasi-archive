@@ -62,8 +62,10 @@ protected
       unless session[:user].editarchive
         flash[:notice] = 'რედაქტირების უფლება არ გაქვთ.'
         redirect_on_failed_check
+        return false
       end
     end
+    true
   end
 
   def redirect_on_failed_check

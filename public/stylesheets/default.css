@@ -286,3 +286,9 @@ table.report td.numeric {
 	padding-left: 20px;
 	background-repeat: no-repeat;
 }
+
+.folder {
+	background-image: url('../images/16x16/folder.png');
+	padding-left: 20px;
+	background-repeat: no-repeat;
+}
