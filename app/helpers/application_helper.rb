@@ -72,7 +72,7 @@ module ApplicationHelper
 
   # თარიღის ფორმატირება
   def ar_date(dt)
-    dt.strftime("%d/%m/%Y")
+    dt.strftime("%d-%b-%Y")
   end
 
   # დრო და თარიღის ფორმატირება
