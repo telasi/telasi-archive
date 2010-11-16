@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   def index
     @title = 'დავალებები'
 
-    user = session[:user]
+    user = get_session_user
     if user.editarchive
       @tasks = Task.paginate :page => params[:page], :order => 'id DESC'
     else
@@ -58,7 +58,7 @@ class TasksController < ApplicationController
       if new_body.nil? or new_body.empty?
         flash.now[:notice] = 'ჩაწერეთ შენიშვნის ტექსტი'
       else
-        user = session[:user]
+        user = get_session_user
 
         if close_task
           @task.status = 'X'
@@ -88,7 +88,7 @@ class TasksController < ApplicationController
     @title = 'ახალი დავალება'
 
     @task = Task.new(params[:task])
-    @task.from = session[:user]
+    @task.from = get_session_user
     @task.status = 'O'
 
     task_body = TaskBody.new

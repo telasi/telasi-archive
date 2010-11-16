@@ -83,39 +83,21 @@ private
     end
   end
 
-  # წიგნების პოვნა
   def get_books(parent)
-    if parent
-      Book.all(:order => :name, :conditions => ["place_id = ?", parent.id])
-    else
+    parent ?
+      Book.all(:order => :name, :conditions => ["place_id = ?", parent.id]) :
       []
-    end
   end
 
-  # ამოწმებს, place1 თუ შეიცავს place2-ს
   def validate_place_inclusion(place1, place2)
-    # ზედა დონეზე ატანა ყოველთვის დაშვებულია
-    if place2.nil?
-      return true
-    end
+    return true if place2.nil?
+    return false if place1.nil?
 
-    # ზედა დონე ყოველთვის შეიცავს ქვედა დონეს!
-    # თუმცა ეს სიტუაცია წმინდა თეორიულია, რადგან ფორმიდან არ ხდება ასეთი რამის გამოძახება. 
-    if place1.nil?
-      return false
-    end
-
-    # place2-ის ზედა დონეებში place1-ის ძებნა
     while place2
-      # აი ვიპოვეთ!
-      if place1.eql? place2
-        return false
-      end
+      return false if place1.eql? place2
       place2 = place2.parent
     end
 
-    # ყველა ტესტი გამოვლილია! შეგვიძლია დნება ავრთოთ გადატანაზე
     true
-  end
-  
+  end  
 end

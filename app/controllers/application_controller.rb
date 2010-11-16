@@ -3,14 +3,14 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-protected
-
   def authorize
     resp = true
-    unless session[:user]
+    unless session[:user_id]
       flash[:notice] = "გაიარეთ ავტორიზაცია"
       redirect_to :controller => 'site', :action => 'login'
       resp = false
+    else
+      @user = User.find(session[:user_id])
     end
     resp
   end
@@ -44,7 +44,7 @@ protected
   def check_admin
     user = get_session_user
     if user
-      unless session[:user].admin
+      unless user.admin
         flash[:notice] = 'ადმინისტრირების უფლება არ გაქვთ.'
         redirect_on_failed_check
       end
@@ -54,7 +54,7 @@ protected
   def check_edit
     user = get_session_user
     if user
-      unless session[:user].editarchive
+      unless user.editarchive
         flash[:notice] = 'რედაქტირების უფლება არ გაქვთ.'
         redirect_on_failed_check
         return false

@@ -1,5 +1,5 @@
 <div id="user">
-<b><%= session[:user].first_name %> <%= session[:user].last_name %></b>
+<b><%= @user.first_name %> <%= @user.last_name %></b>
 <%= link_to 'პაროლის შეცვლა', change_password_url %> |
 <%= link_to 'გასვლა', logout_url %>
 </div>
