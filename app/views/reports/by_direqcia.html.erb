@@ -15,7 +15,7 @@
 <tr>
 <td><%= row[0].code %></td>
 <td><%= link_to row[0].name, row[0] %></td>
-<td class="numeric"><%= link_to number_with_delimiter(row[1]), rep_by_direqcia_url(:s => 'true', :direqcia_id => row[0].id) %></td>
+<td class="numeric"><%= link_to number_with_delimiter(row[1]), search_url(:search => {:direqcia_id=>row[0].id}) %></td>
 </tr>
 <% end -%>
 <tr>

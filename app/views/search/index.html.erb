@@ -11,16 +11,21 @@
 
 <fieldset style="border: none;">
 <div>
-	<label for="name" style="display: inline-block; width: 120px; text-align: right;">დასახელება:</label>
+   <label style="display: inline-block; width: 200px; text-align: right;">დასახელება:</label>
 	<%= text_field :search, :name %>
 </div>
 <div>
-	<label for="name" style="display: inline-block; width: 120px; text-align: right;">დირექცია:</label>
+	<label style="display: inline-block; width: 200px; text-align: right;">დირექცია/ნომენკლატურა:</label>
 	<%= collection_select 'search', 'direqcia_id', Direqcia.all(:order => :code), :id, :code, {:include_blank => true} %>
+	<%= collection_select 'search', 'nomenclature_id', Nomenclature.all(:include => :direqcia, :order => 'direqcias.code, nomenclatures.code'), :id, :to_s, {:include_blank => true} %>
 </div>
 <div>
-	<label for="nomenclature_id" style="display: inline-block; width: 120px; text-align: right;">ნომენკლატურა:</label>
-	<%= collection_select 'search', 'nomenclature_id', Nomenclature.all(:include => :direqcia, :order => 'direqcias.code, nomenclatures.code'), :id, :to_s, {:include_blank => true} %>
+	<label style="display: inline-block; width: 200px; text-align: right;">წელი</label>
+	<%= text_field :search, :book_year %>
+</div>
+<div>
+	<label style="display: inline-block; width: 200px; text-align: right;">წელი (შემოსვლის)</label>
+	<%= text_field :search, :enter_year %>
 </div>
 <div style="margin-left: 125px;">
 	<%= submit_tag "ძებნა" %>

@@ -13,12 +13,14 @@
 <td><%= year_datum[:year] %></td>
 <td><%= year_datum[:direqcia].code %></td>
 <td><%= link_to year_datum[:direqcia].name, year_datum[:direqcia] %></td>
-<td class="numeric"><%= number_with_delimiter year_datum[:count] %></td>
+<td class="numeric"><%= link_to number_with_delimiter(year_datum[:count]),
+ 	search_url(:search => {:book_year => year_datum[:year], :direqcia_id => year_datum[:direqcia].id}) %></td>
 </tr>
 <% end -%>
 <tr>
 <td class="summary" colspan="3">ჯამი <%= datum[:year] %> წლისთვის</td>
-<td class="summary numeric"><%= number_with_delimiter datum[:count] %></td>
+<td class="summary numeric"><%= link_to number_with_delimiter(datum[:count]),
+ 	search_url(:search => {:book_year => datum[:year]}) %></td>
 </tr>
 <% end -%>
 <tr>

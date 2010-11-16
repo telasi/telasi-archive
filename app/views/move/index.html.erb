@@ -17,7 +17,7 @@
 <div class="list_action2"><%= move_link book.id, @parent1, @parent2, 1, 'book' %></div>
 <div class="list_item2" style=" width: 500px;">
 <%= image_tag '16x16/book.png', :style => "vertical-align: middle;" %>
-<%= h(book.name) %>
+<%= h("[#{book.order_by}] #{book.name}") %>
 </div>
 </div>
 <% end; end -%>
@@ -39,7 +39,7 @@
 <div class="list_action2"><%= move_link book.id, @parent1, @parent2, 2, 'book' %></div>
 <div class="list_item2" style=" width: 500px;">
 <%= image_tag '16x16/book.png', :style => "vertical-align: middle;" %>
-<%= h(book.name) %>
+<%= h("[#{book.order_by}] #{book.name}") %>
 </div>
 </div>
 <% end; end -%>
