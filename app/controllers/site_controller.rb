@@ -10,7 +10,7 @@ class SiteController < ApplicationController
     if request.post?
       user = User.authenticate(params[:name], params[:password])
       if user
-        session[:user] = user
+        session[:user_id] = user.id
         redirect_to :action => 'index'
         return
       else
@@ -23,14 +23,14 @@ class SiteController < ApplicationController
   # სისტემიდან გასვლა
   def logout
     @title = 'გასვლა'
-    session[:user] = nil
+    session[:user_id] = nil
     render :layout => 'simple'
   end
 
   def change_password
     @title = 'პაროლის შეცვლა'
     if request.post?
-      user = session[:user]
+      user = get_session_user
       user.password = request[:password]
       user.password_confirmation = request[:password_confirmation]
       if user.save

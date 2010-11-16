@@ -38,10 +38,7 @@ protected
   end
 
   def get_session_user
-    if session[:user]
-      return User.find(session[:user].id)
-    end
-    nil
+    session[:user_id] ? User.find(session[:user_id]) : nil
   end
 
   def check_admin
