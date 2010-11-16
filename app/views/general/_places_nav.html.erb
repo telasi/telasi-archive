@@ -1,4 +1,4 @@
-<%= link_to 'საწყისი', places_url %>
+<%= link_to 'საწყისი', places_url(:parent_id => 0) %>
 <% links.each do |link| -%>
 &gt;
 <%= link_to link[:name], link[:url] %>

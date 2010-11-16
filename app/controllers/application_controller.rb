@@ -18,11 +18,9 @@ protected
   def ar_get_parent
     parent_id = request[:parent_id]
     if parent_id
-      parent = Place.find(parent_id)
-    else
-      parent = nil
+      session[:parent_id] = parent_id.to_i == 0 ? nil : parent_id
     end
-    parent
+    session[:parent_id] ? Place.find(session[:parent_id]) : nil
   end
 
   def ar_get_active_nomenclature
