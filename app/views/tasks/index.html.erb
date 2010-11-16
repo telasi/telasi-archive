@@ -18,7 +18,7 @@
 <% @tasks.each do |task| %>
 <div class="list_row" style="border: 1px solid silver; padding: 5px; margin-bottom: 5px; background: <%= task.color %>;">
 <div style="float: right;">
-<%= link_to task.from.full_name, task.from %> <%= task.created_at %>
+<%= link_to task.from.full_name, task.from %> <%= ar_date_time(task.created_at) %>
 </div>
 <div class="list_item2">
 <%= image_tag task.image %>
