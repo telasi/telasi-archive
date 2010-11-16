@@ -9,6 +9,10 @@ class PlacesController < ApplicationController
     end
   end
 
+  def self.find_books(parent_id)
+    Book.all(:order => 'custom_order, order_by', :conditions => ["place_id = ?", parent_id])
+  end
+
   def index
     @parent = ar_get_parent
     @nomenclatures = Nomenclature.all(:include => :direqcia, :order => 'direqcias.code, nomenclatures.code')
@@ -16,7 +20,7 @@ class PlacesController < ApplicationController
 
     if @parent
       @places = PlacesController.find_places(@parent.id)
-      @books = Book.all(:order => 'custom_order, order_by', :conditions => ["place_id = ?", @parent.id])
+      @books = PlacesController.find_books(@parent.id)
       @title = @parent.name
     else
       @places = PlacesController.find_places(nil)
@@ -143,6 +147,17 @@ class PlacesController < ApplicationController
       @title = 'თაროების დალაგება'
       @parent = ar_get_parent
       @books = Book.all(:order => 'custom_order, order_by', :conditions => ["place_id = ?", @parent.id])
+    end
+  end
+
+  def print_shelf
+    place = Place.find(params[:id])
+    output = ShelfReport.new.to_pdf(place, PlacesController.find_books(place.id))
+
+    respond_to do |format|
+      format.pdf do
+        send_data(output, :filename => "shelf.pdf", :type => :pdf)
+      end
     end
   end
 

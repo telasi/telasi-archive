@@ -2,6 +2,9 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.1'
 gem "will_paginate", "3.0.pre"
+gem "pdf-reader"
+gem "Ascii85"
+#gem "prawn"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

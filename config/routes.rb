@@ -15,6 +15,7 @@ Archive::Application.routes.draw do
   match '/moveplace', :controller => :move, :action => :move
   match '/change_nomenclature', :controller => :places, :action => :change_nomenclature
   match '/reorder', :controller => :places, :action => :reorder
+  match '/print_shelf', :controller => :places, :action => :print_shelf
   match '/reports', :controller => :reports, :action => :index
   match '/newtaskbody/:id', :controller => :tasks, :action => :new_body
 
