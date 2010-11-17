@@ -14,11 +14,12 @@ class ShelfReport < Prawn::Document
     else
       text "სია ცარიალეი", :size => 10
     end
+    number_pages "გვერდი <page> / <total>-დან ", [bounds.right - 100, 0]
     render
   end
   
   def books_table(books)
-    widths = [40, 48w0]
+    widths = [40, 480]
     count = 0
     items = books.map do |book|
       count += 1
@@ -29,7 +30,6 @@ class ShelfReport < Prawn::Document
     end
     items.insert(0, %w[№ დასახელება])
     table(items, :header => true, :column_widths => widths, :row_colors => %w[cccccc ffffff])
-    number_pages "გვერდი <page> / <total>-დან ", [bounds.right - 100, 0]
   end
   
 end

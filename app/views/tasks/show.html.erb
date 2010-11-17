@@ -1,10 +1,11 @@
 <h1><%= image_tag @task.image %> <%=h @task.subject %></h1>
 
 <div class="action">
+<%= link_to 'დაბეჭდვა', print_task_url(:id => @task.id, :format => :pdf), :class => 'print' %> &middot;
 <%= image_tag '16x16/user_comment.png' %>
-<%= link_to 'შენიშვნის დამატება', :id => @task.id, :action => 'new_body' %>  |
+<%= link_to 'შენიშვნის დამატება', :id => @task.id, :action => 'new_body' %>  &middot;
 <%= image_tag '16x16/pencil.png' %>
-<%= link_to 'სათაურის შეცვლა', edit_task_path(@task) %> |
+<%= link_to 'სათაურის შეცვლა', edit_task_path(@task) %> &middot;
 <%= image_tag '16x16/bin_closed.png' %>
 <%= link_to 'წაშლა', @task, :confirm => 'დაადასტურეთ ამ დავალების წაშლა.', :method => :delete %>
 </div>

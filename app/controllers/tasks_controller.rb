@@ -136,4 +136,15 @@ class TasksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def print_task
+    task = Task.find(params[:id])
+    output = TaskReport.new.to_pdf(task)
+
+    respond_to do |format|
+      format.pdf do
+        send_data(output, :filename => "task_#{task.id}.pdf", :type => :pdf)
+      end
+    end
+  end
 end

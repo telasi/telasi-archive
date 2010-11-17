@@ -156,7 +156,7 @@ class PlacesController < ApplicationController
 
     respond_to do |format|
       format.pdf do
-        send_data(output, :filename => "shelf.pdf", :type => :pdf)
+        send_data(output, :filename => "shelf_#{place.id}.pdf", :type => :pdf)
       end
     end
   end

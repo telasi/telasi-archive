@@ -16,9 +16,9 @@ Archive::Application.routes.draw do
   match '/change_nomenclature', :controller => :places, :action => :change_nomenclature
   match '/reorder', :controller => :places, :action => :reorder
   match '/print_shelf', :controller => :places, :action => :print_shelf
+  match '/print_task', :controller => :tasks, :action => :print_task
   match '/reports', :controller => :reports, :action => :index
   match '/newtaskbody/:id', :controller => :tasks, :action => :new_body
-
   match '/rep_by_direqcia', :controller => :reports, :action => :by_direqcia
   match '/rep_by_direqcia_and_year', :controller => :reports, :action => :by_direqcia_and_year
   match '/rep_by_direqcia_and_enter_year', :controller => :reports, :action => :by_direqcia_and_enter_year
