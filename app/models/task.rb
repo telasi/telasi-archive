@@ -9,7 +9,7 @@ class Task < ActiveRecord::Base
     if status == 'O' # ღია სტატუსი
       '16x16/application.png'
     elsif status == 'C' # შესრულებული სტატუსი
-      '16x16/bell.png'
+      '16x16/clock.png'
     elsif status == 'X' # დახურული სტატუსი
       '16x16/accept.png'
     end
