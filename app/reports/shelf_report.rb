@@ -18,7 +18,7 @@ class ShelfReport < Prawn::Document
   end
   
   def books_table(books)
-    widths = [20, 500]
+    widths = [40, 48w0]
     count = 0
     items = books.map do |book|
       count += 1
