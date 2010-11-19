@@ -122,7 +122,7 @@ class SearchController < ApplicationController
           where += ' and '
         end
         where += 'book_year = ?'
-         where_params(search.book_year)
+        where_params.push(search.book_year)
       end
       # enter_year
       unless search.enter_year.nil? or search.enter_year.empty?
@@ -130,7 +130,7 @@ class SearchController < ApplicationController
           where += ' and '
         end
         where += 'enter_year = ?'
-        where_params(search.enter_year)
+        where_params.push(search.enter_year)
       end
       # get books
       #@books = Book.all(:conditions => [where, where_params], :include => :nomenclature)
