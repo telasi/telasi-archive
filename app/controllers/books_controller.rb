@@ -40,6 +40,7 @@ class BooksController < ApplicationController
       @book.start_date = copy.start_date
       @book.end_date = copy.end_date
       @book.page_count = copy.page_count
+      @book.book_presenter = copy.book_presenter
     end
     
     session[:parent_id] = request[:parent_id]

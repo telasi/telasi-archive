@@ -3,7 +3,7 @@
 
   <p>
     <%= f.label :name, 'სახელი' %><br />
-    <%= f.text_field :name, :size => 60 %>
+    <%= f.text_field :name, :style => 'width: 400px;' %>
   </p>
   <p>
     <%= f.label :order_by, 'დალაგება' %><br />
@@ -24,6 +24,10 @@
   <p>
     <%= f.label :end_date2, 'საბოლოო თარიღი' %><br />
     <%= f.text_field :end_date2, :class => 'datepicker' %>
+  </p>
+  <p>
+    <%= f.label :book_presenter, 'ვინ ჩააბარა? (სახელი და გვარი, თანამდებობა)' %><br />
+    <%= f.text_field :book_presenter, :style => 'width: 400px;' %>
   </p>
   <p>
     <%= f.submit 'შენახვა' %>

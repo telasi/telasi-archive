@@ -38,6 +38,10 @@
   <%=h ar_date_time(@book.updated_at) %>
 </p>
 
+<p>
+  <b>ვინ ჩააბარა?</b>
+  <%=h @book.book_presenter %>
+</p>
 
 <%= link_to 'შეცვლა', edit_book_path(@book) %> |
 <%= link_to 'კოპირება', new_book_path(:copy_id => @book.id, :parent_id => @book.place.id) %>

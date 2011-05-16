@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101115172545) do
+ActiveRecord::Schema.define(:version => 20110516071831) do
 
   create_table "books", :force => true do |t|
     t.string   "name"
@@ -25,13 +25,14 @@ ActiveRecord::Schema.define(:version => 20101115172545) do
     t.integer  "custom_order"
     t.integer  "book_year"
     t.integer  "enter_year"
+    t.string   "book_presenter"
   end
 
   add_index "books", ["book_year"], :name => "index_books_on_book_year"
   add_index "books", ["enter_year"], :name => "index_books_on_enter_year"
   add_index "books", ["nomenclature_id"], :name => "index_books_on_nomenclature_id"
+  add_index "books", ["place_id", "custom_order"], :name => "index_books_on_place_id_and_custom_order"
   add_index "books", ["place_id", "order_by"], :name => "index_books_on_place_id_and_order_by"
-  add_index "books", ["place_id"], :name => "index_books_on_place_id_and_custom_order"
 
   create_table "direqcias", :force => true do |t|
     t.string   "code"
