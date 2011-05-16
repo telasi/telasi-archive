@@ -1,5 +1,5 @@
 class Search
-  attr_accessor :name, :direqcia_id, :nomenclature_id, :book_year, :enter_year
+  attr_accessor :name, :direqcia_id, :nomenclature_id, :book_year, :enter_year, :book_presenter
 
   def self.create(map)
     s = Search.new
@@ -8,12 +8,14 @@ class Search
     s.nomenclature_id = map[:nomenclature_id] ? map[:nomenclature_id].to_i : 0
     s.book_year = map[:book_year] ? map[:book_year] : nil
     s.enter_year = map[:enter_year] ? map[:enter_year] : nil
+    s.book_presenter = map[:book_presenter] ? map[:book_presenter] : nil
     s
   end
 
   def empty?
     (self.name.nil? or self.name.empty?) and (self.direqcia_id == 0) and (self.nomenclature_id == 0) and
-    (self.book_year.nil? or self.book_year.empty?) and (self.enter_year.nil? or self.enter_year.empty?)
+    (self.book_year.nil? or self.book_year.empty?) and (self.enter_year.nil? or self.enter_year.empty?) and
+    (self.book_presenter.nil? or self.book_presenter.empty?)
   end
 end
 
@@ -131,6 +133,14 @@ class SearchController < ApplicationController
         end
         where += 'enter_year = ?'
         where_params.push(search.enter_year)
+      end
+      # book_presenter
+      unless search.book_presenter.nil? or search.book_presenter.empty?
+        unless where.empty?
+          where += ' and '
+        end
+        where += 'book_presenter LIKE ?'
+        where_params.push("%#{search.book_presenter}%")
       end
       # get books
       #@books = Book.all(:conditions => [where, where_params], :include => :nomenclature)
