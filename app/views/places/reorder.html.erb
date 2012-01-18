@@ -14,13 +14,15 @@ function save_order() {
 	for (i = 0; i < items.length; i++) {
 		books[i] = $(items[i]).attr("book_id");
 	}
+	var data = {books : books};
+	if (typeof(AUTH_TOKEN) != "undefined") data['authenticity_token'] = AUTH_TOKEN;
 	$.ajax({
 		type: 'POST',
 		url: REORDER_URL,
 		dataType: 'html',
-		data: {books: books},
+		data: data,
 		success: function(data) {
-			window.location = data;
+			window.location = '<%= places_url(:parent_id => params[:parent_id]) %>';
 		},
 		error: function(data,text,error) {
 			alert("სერვერის შეცდომა: სცადეთ ხელახლა მოგვიანებით.");

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class TaskReport < Prawn::Document
   def to_pdf(task)
     self.font_size = 10

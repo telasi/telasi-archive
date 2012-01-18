@@ -1,3 +1,4 @@
+# encoding: utf-8
 class UsersController < ApplicationController
   # ამ კონტროლერით სარგებლობა მხოლოდ ადმინისტრატორებს შეუძლიათ
   before_filter :check_admin, :except => [:index, :show]

@@ -1,3 +1,4 @@
+# encoding: utf-8
 module PlacesHelper
 
   def place_location(place)

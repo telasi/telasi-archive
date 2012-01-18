@@ -1,5 +1,5 @@
 <h1>დავალების სათაურის შეცვლა</h1>
-<% form_for(@task) do |f| -%>
+<%= form_for(@task) do |f| -%>
 <%= render :partial => 'general/errors', :locals => {:entity => @task} %>
   <p>
     <%= f.label :subject, 'სათაური' %><br />

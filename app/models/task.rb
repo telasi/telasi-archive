@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Task < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 25

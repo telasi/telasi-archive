@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Search
   attr_accessor :name, :direqcia_id, :nomenclature_id, :book_year, :enter_year, :book_presenter
 

@@ -1,6 +1,6 @@
 <h1>ახალი მომხმარებელი</h1>
 
-<% form_for(@user) do |f| %>
+<%= form_for(@user) do |f| %>
 <%= render :partial => 'general/errors', :locals => {:entity => @user} %>
 
   <p>

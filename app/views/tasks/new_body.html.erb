@@ -1,6 +1,6 @@
 <h1><%= @task.subject %></h1>
 
-<% form_tag do |f| %>
+<%= form_tag do |f| %>
   <p>
     <label for="new_body">ჩაწერეთ აქ თქვენი შენიშვნა:</label><br/>
     <%= text_area_tag :new_body, params[:new_body], :size => '60x10' %>

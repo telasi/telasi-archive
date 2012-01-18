@@ -1,3 +1,4 @@
+# encoding: utf-8
 class SiteController < ApplicationController
   # საწყისი გვერდი
   def index

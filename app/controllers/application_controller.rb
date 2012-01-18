@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ApplicationController < ActionController::Base
   before_filter :authorize, :except => :login
   helper :all # include all helpers, all the time
@@ -7,7 +8,7 @@ class ApplicationController < ActionController::Base
     resp = true
     unless session[:user_id]
       flash[:notice] = "გაიარეთ ავტორიზაცია"
-      redirect_to :controller => 'site', :action => 'login'
+      redirect_to login_url
       resp = false
     else
       @user = User.find(session[:user_id])

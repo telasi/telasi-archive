@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Nomenclature < ActiveRecord::Base
   belongs_to :direqcia
   has_many :books

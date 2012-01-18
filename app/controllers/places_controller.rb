@@ -1,3 +1,4 @@
+# encoding: utf-8
 class PlacesController < ApplicationController
   before_filter :check_edit, :except => [:index]
 
@@ -138,11 +139,11 @@ class PlacesController < ApplicationController
       books = params[:books]
       size = books.size - 1
       for i in 0..size
-        book = Book.find(books[i])
+        book = Book.find( books[i] )
         book.custom_order = i
         book.save
       end
-      render :text => places_url(:parent_id => params[:parent_id])
+      render :text => 'ok'
     else
       @title = 'თაროების დალაგება'
       @parent = ar_get_parent

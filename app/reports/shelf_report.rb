@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ShelfReport < Prawn::Document
   def to_pdf(place, books)
     self.font_size = 10

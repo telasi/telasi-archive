@@ -1,3 +1,4 @@
+# encoding: utf-8
 class DireqciasController < ApplicationController
   before_filter :check_edit, :except => [:index, :show]
 

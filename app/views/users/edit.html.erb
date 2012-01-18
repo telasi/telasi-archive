@@ -1,6 +1,6 @@
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
 
-<% form_for(@user) do |f| %>
+<%= form_for(@user) do |f| %>
 <%= render :partial => 'general/errors', :locals => {:entity => @user} %>
 
   <p>

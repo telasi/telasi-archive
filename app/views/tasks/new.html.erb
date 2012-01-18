@@ -1,6 +1,6 @@
 <h1>ახალი დავალება</h1>
 
-<% form_for(@task) do |f| %>
+<%= form_for(@task) do |f| %>
 <%= render :partial => 'general/errors', :locals => {:entity => @task} %>
 
   <p>

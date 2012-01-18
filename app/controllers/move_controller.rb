@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # წიგნების/თაროების გადატანის კონტროლერი
 class MoveController < ApplicationController
   before_filter :check_edit, :except => [:index]

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class NomenclaturesController < ApplicationController
   before_filter :check_edit, :except => [:index, :show]
 

@@ -1,4 +1,4 @@
-<% form_for(@nomenclature) do |f| -%>
+<%= form_for(@nomenclature) do |f| -%>
 <%= render :partial => 'general/errors', :locals => {:entity => @nomenclature} %>
   <p>
     <%= f.label :direqcia, 'დირექცია' %><br />

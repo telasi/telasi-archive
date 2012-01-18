@@ -1,3 +1,4 @@
+# encoding: utf-8
 class TaskBody < ActiveRecord::Base
   belongs_to :task
   belongs_to :from, :class_name => 'User'
